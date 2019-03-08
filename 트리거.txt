@@ -1,0 +1,16 @@
+
+
+--삭제시 백업 테이블에 저장
+create trigger Trigger_back
+before delete on customer
+for each row
+begin
+	insert into back_customer 
+			values(:OLD.customer_name,
+				:OLD.customer_id,
+				:OLD.customer_tel,
+				:OLD.customer_bank,
+				:OLD.customer_age );
+end;
+/
+	
